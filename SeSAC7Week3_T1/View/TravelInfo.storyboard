@@ -10,7 +10,7 @@
         <!--Root View Controller-->
         <scene sceneID="O0m-AY-0bY">
             <objects>
-                <tableViewController id="OhV-ZL-iGq" sceneMemberID="viewController">
+                <tableViewController id="OhV-ZL-iGq" customClass="TravelInfoTableViewController" customModule="SeSAC7Week3_T1" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="5sf-t2-02P">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
