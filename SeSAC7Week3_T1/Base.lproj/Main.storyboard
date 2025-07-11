@@ -16,7 +16,6 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="8g6-ZX-x0F" kind="relationship" relationship="viewControllers" id="dgK-Qe-FlW"/>
                         <segue destination="cwW-RO-szG" kind="relationship" relationship="viewControllers" id="UJk-f1-SHM"/>
                     </connections>
                 </tabBarController>
