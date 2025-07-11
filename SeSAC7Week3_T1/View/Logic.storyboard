@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
@@ -17,15 +17,29 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FAx-6T-baM">
-                                <rect key="frame" x="24" y="138" width="345" height="44"/>
+                                <rect key="frame" x="24" y="138" width="345" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="6nB-rr-3y4"/>
+                                    <constraint firstAttribute="height" constant="50" id="6nB-rr-3y4"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="logicTextFieldDidEndOnExit:" destination="Y6W-OH-hqX" eventType="editingDidEndOnExit" id="3MH-TJ-3Ya"/>
+                                </connections>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gmu-5n-BV0">
-                                <rect key="frame" x="175.66666666666666" y="282" width="42" height="20.333333333333314"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="2J1-PC-tH9">
+                                <rect key="frame" x="24" y="238" width="345" height="120"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="R8Y-RG-eEe"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="haj-Xe-ilM">
+                                <rect key="frame" x="24" y="408" width="345" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -34,13 +48,22 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="gmu-5n-BV0" firstAttribute="top" secondItem="FAx-6T-baM" secondAttribute="bottom" constant="100" id="AOp-a9-0Nk"/>
+                            <constraint firstItem="haj-Xe-ilM" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="AVl-k2-Sg1"/>
+                            <constraint firstItem="haj-Xe-ilM" firstAttribute="top" secondItem="2J1-PC-tH9" secondAttribute="bottom" constant="50" id="DkO-ai-84L"/>
+                            <constraint firstItem="2J1-PC-tH9" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="Ktq-p6-Odk"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="2J1-PC-tH9" secondAttribute="trailing" constant="24" id="Mvv-jr-jRh"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="FAx-6T-baM" secondAttribute="trailing" constant="24" id="UuI-CK-rjB"/>
-                            <constraint firstItem="gmu-5n-BV0" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="kCX-KZ-JTJ"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="haj-Xe-ilM" secondAttribute="trailing" constant="24" id="fr6-sc-Lrz"/>
                             <constraint firstItem="FAx-6T-baM" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="20" id="oDl-HQ-7xF"/>
                             <constraint firstItem="FAx-6T-baM" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="y23-xC-KJY"/>
+                            <constraint firstItem="2J1-PC-tH9" firstAttribute="top" secondItem="FAx-6T-baM" secondAttribute="bottom" constant="50" id="zHB-Aq-HPN"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="logicLabel" destination="haj-Xe-ilM" id="twF-CB-5O8"/>
+                        <outlet property="logicTextField" destination="FAx-6T-baM" id="D6d-5A-FD1"/>
+                        <outlet property="logicTextView" destination="2J1-PC-tH9" id="boj-X2-YD0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -48,6 +71,9 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
