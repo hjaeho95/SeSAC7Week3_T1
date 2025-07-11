@@ -16,7 +16,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="cwW-RO-szG" kind="relationship" relationship="viewControllers" id="UJk-f1-SHM"/>
+                        <segue destination="WRe-cs-0Jw" kind="relationship" relationship="viewControllers" id="Snj-nz-DZ3"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k6a-Q3-zOA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -41,7 +41,17 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="98f-X0-4pd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="538" y="-243"/>
+            <point key="canvasLocation" x="381" y="-415"/>
+        </scene>
+        <!--TravelInfo-->
+        <scene sceneID="8c0-tc-Owy">
+            <objects>
+                <viewControllerPlaceholder storyboardName="TravelInfo" id="WRe-cs-0Jw" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="Hoe-73-t32"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cfk-Ru-KyM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="402" y="-327"/>
         </scene>
     </scenes>
 </document>
