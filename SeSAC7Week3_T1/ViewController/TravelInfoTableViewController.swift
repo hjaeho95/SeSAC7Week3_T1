@@ -9,7 +9,7 @@ import UIKit
 
 class TravelInfoTableViewController: UITableViewController {
     
-    let travels: [Travel] = [
+    var travels: [Travel] = [
         Travel(title: "하나우마 베이",
                description: "아름다운 자연을 감상할 수 있는 스노쿨링 명소",
                travel_image: "https://images.unsplash.com/photo-1539498508910-091b5e859b1d?q=80&w=3250&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -119,79 +119,110 @@ class TravelInfoTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-    }
-    
-    // MARK: - Table view data source
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        navigationItem.title = "도시 상세 정보"
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return travels.count
     }
     
-    /*
-     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-     let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-     
-     // Configure the cell...
-     
-     return cell
-     }
-     */
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return setUI(tableView: tableView, indexPath: indexPath)
+    }
     
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let travel = travels[indexPath.row]
+        
+        return travel.ad ?? false ? 280 : 170
+    }
     
-    /*
-     // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
+    func setUI(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "travelInfoCell", for: indexPath) as! TravelInfoTableViewCell
+        
+        let travel = travels[indexPath.row]
+        
+        setTitleLabel(cell, travel)
+        setDescriptionLabel(cell, travel)
+        setGradeLabel(cell, travel)
+        setSaveLabel(cell, travel)
+        setLikeButton(cell, travel, indexPath)
+        setTravelImageView(cell, travel)
+        
+        return cell
+    }
     
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
+    func setTitleLabel(_ cell: TravelInfoTableViewCell,_ travel: Travel) {
+        cell.titleLabel.text = travel.title
+    }
     
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
+    func setDescriptionLabel(_ cell: TravelInfoTableViewCell,_ travel: Travel) {
+        cell.descriptionLabel.text = travel.description
+    }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    func setGradeLabel(_ cell: TravelInfoTableViewCell,_ travel: Travel) {
+//        if let grade = travel.grade {
+//            let gradeText = switch grade {
+//            case 0..<1:
+//                "􀋂􀋂􀋂􀋂􀋂"
+//            case 1..<2:
+//                "􀋃􀋂􀋂􀋂􀋂"
+//            case 2..<3:
+//                "􀋃􀋃􀋂􀋂􀋂"
+//            case 3..<4:
+//                "􀋃􀋃􀋃􀋂􀋂"
+//            case 4..<5:
+//                "􀋃􀋃􀋃􀋃􀋂"
+//            default:
+//                "􀋃􀋃􀋃􀋃􀋃"
+//            }
+//            cell.gradeLabel.text = gradeText
+//        } else {
+//            cell.gradeLabel.text = "􀋂􀋂􀋂􀋂􀋂"
+//        }
+        if let grade = travel.grade {
+            for i in 1...Int(grade) {
+                cell.gradeImageViews[i - 1].tintColor = .orange
+            }
+        } 
+    }
     
+    func setSaveLabel(_ cell: TravelInfoTableViewCell,_ travel: Travel) {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        let saveText = numberFormatter.string(for: travel.save ?? 0)
+        
+        cell.saveLabel.text = " · 저장 \(saveText ?? "0")"
+    }
+    
+    func setLikeButton(_ cell: TravelInfoTableViewCell,_ travel: Travel, _ indexPath: IndexPath) {
+        cell.likeButton.tag = indexPath.row
+        cell.likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
+        
+        guard let like = travel.like else { return }
+        
+        cell.likeButton.isHidden = false
+        
+        if like {
+            cell.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal
+            )
+            cell.likeButton.tintColor = .red
+        } else {
+            cell.likeButton.setImage(UIImage(systemName: "heart"), for: .normal
+            )
+            cell.likeButton.tintColor = .white
+        }
+    }
+    
+    func setTravelImageView(_ cell: TravelInfoTableViewCell,_ travel: Travel) {
+        guard let imageString = travel.travel_image else { return }
+        let url = URL(string: imageString)
+        
+        cell.travelImageView.kf.setImage(with: url)
+    }
+    
+    @objc func likeButtonTapped(sender: UIButton) {
+        travels[sender.tag].like?.toggle()
+        
+        tableView.reloadRows(at: [IndexPath(row: sender.tag, section: 0)], with: .fade)
+    }
 }
