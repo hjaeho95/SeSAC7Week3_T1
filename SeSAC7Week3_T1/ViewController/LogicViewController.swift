@@ -21,6 +21,10 @@ class LogicViewController: UIViewController {
         setUI()
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
     func setUI() {
         setLogicTextField()
         setLogicTextView()
@@ -33,6 +37,7 @@ class LogicViewController: UIViewController {
         ])
         logicTextField.attributedPlaceholder = attrString
         logicTextField.textAlignment = .center
+        logicTextField.keyboardType = .numbersAndPunctuation
     }
     
     func setLogicTextView() {
@@ -44,22 +49,18 @@ class LogicViewController: UIViewController {
     }
     
     func logic369(_ value: Int) {
-        var str = ""
-        var count = 0
+        var result = ""
+        
         for i in 1...value {
             let strArr = Array(String(i))
-            
-            if strArr.filter { ["3", "6", "9"].contains($0) }.count > 0 {
-                count += 1
-                str += "👏"
-            } else {
-                str += String(i)
-            }
-            str += ", "
+            result += strArr.map { ["3", "6", "9"].contains($0) ? "👏" : $0 }
+            result += ", "
         }
         
-        logicTextView.text = str
-        logicLabel.text = "숫자 \(value)까지 총 박수는 \(count)번 입니다."
+        let clapCount = result.filter { $0 == "👏" }.count
+        
+        logicTextView.text = result
+        logicLabel.text = "숫자 \(value)까지 총 박수는 \(clapCount)번 입니다."
     }
     
     func setLogicLabel() {
