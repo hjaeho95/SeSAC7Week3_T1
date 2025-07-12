@@ -30,6 +30,7 @@ class MagazineInfoTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Magazine"
         navigationItem.title = "SeSAC TRAVEL"
     }
     

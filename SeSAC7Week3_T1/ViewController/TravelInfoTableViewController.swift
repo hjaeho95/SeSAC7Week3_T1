@@ -119,6 +119,7 @@ class TravelInfoTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Travel"
         navigationItem.title = "도시 상세 정보"
     }
     

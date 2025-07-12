@@ -6,17 +6,19 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Tab Bar Controller-->
+        <!--MyUI Tab Bar Controller-->
         <scene sceneID="BbX-LC-gN2">
             <objects>
-                <tabBarController id="zsC-77-KUJ" sceneMemberID="viewController">
+                <tabBarController id="zsC-77-KUJ" customClass="MyUITabBarController" customModule="SeSAC7Week3_T1" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="F8B-dA-jCG">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="WRe-cs-0Jw" kind="relationship" relationship="viewControllers" id="Snj-nz-DZ3"/>
+                        <segue destination="cwW-RO-szG" kind="relationship" relationship="viewControllers" id="BdA-hp-ysx"/>
+                        <segue destination="8g6-ZX-x0F" kind="relationship" relationship="viewControllers" id="S0O-X2-AO0"/>
+                        <segue destination="WRe-cs-0Jw" kind="relationship" relationship="viewControllers" id="hs8-YQ-2dH"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k6a-Q3-zOA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -27,7 +29,7 @@
         <scene sceneID="CGe-cB-deL">
             <objects>
                 <viewControllerPlaceholder storyboardName="MagazineInfo" id="cwW-RO-szG" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="dQv-tm-TbB"/>
+                    <tabBarItem key="tabBarItem" title="" id="dQv-tm-TbB"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oS5-jh-U7B" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -37,7 +39,7 @@
         <scene sceneID="wej-ds-IPb">
             <objects>
                 <viewControllerPlaceholder storyboardName="Logic" id="8g6-ZX-x0F" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Y0F-CA-XSt"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="" id="Y0F-CA-XSt"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="98f-X0-4pd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -47,7 +49,7 @@
         <scene sceneID="8c0-tc-Owy">
             <objects>
                 <viewControllerPlaceholder storyboardName="TravelInfo" id="WRe-cs-0Jw" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Hoe-73-t32"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="" id="Hoe-73-t32"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cfk-Ru-KyM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
