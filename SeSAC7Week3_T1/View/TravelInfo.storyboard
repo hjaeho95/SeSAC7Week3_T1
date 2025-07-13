@@ -58,7 +58,7 @@
                                                         <constraint firstAttribute="height" constant="44" id="h2k-D1-IOD"/>
                                                     </constraints>
                                                     <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" image="button:rar-Wd-3EX:image" catalog="system"/>
+                                                    <buttonConfiguration key="configuration" style="plain" image="button:rar-Wd-3EX:image"/>
                                                 </button>
                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qcs-o7-nw3">
                                                     <rect key="frame" x="16" y="68.666666666666671" width="80" height="16"/>
@@ -194,7 +194,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="button:rar-Wd-3EX:image" catalog="system" width="128" height="107">
+        <image name="button:rar-Wd-3EX:image" width="128" height="107">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMSAAGGoF8QD05T
 S2V5ZWRBcmNoaXZlctEICVRyb290gAGvEBELDB0eIxsoLS41ODtFTU5SVVUkbnVsbNgNDg8QERITFBUW

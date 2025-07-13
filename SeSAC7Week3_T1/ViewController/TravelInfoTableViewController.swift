@@ -133,8 +133,10 @@ class TravelInfoTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let travel = travels[indexPath.row]
+
+        let rowHeight = tableView.rowHeight
         
-        return travel.ad ?? false ? 280 : 170
+        return rowHeight
     }
     
     func setUI(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
