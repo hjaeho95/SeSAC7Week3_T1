@@ -157,6 +157,30 @@ class TravelInfoTableViewController: UITableViewController {
         return travel.ad ?? false ? 120 : UITableView.automaticDimension
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let travel = travels[indexPath.row]
+        
+        let sb = UIStoryboard(name: "TravelInfo", bundle: nil)
+        
+        if travel.ad ?? false {
+            let vc = sb.instantiateViewController(withIdentifier: AdViewController.identifier) as! AdViewController
+            
+            vc.labelText = travel.title ?? ""
+            
+            navigationController?.pushViewController(vc, animated: true)
+        } else {
+            let vc = sb.instantiateViewController(withIdentifier: TouristSpotViewController.identifier) as! TouristSpotViewController
+            
+            let url = URL(string: travel.travel_image ?? "")
+            
+            vc.imageUrl = url
+            vc.titleText = travel.title ?? ""
+            vc.subtitleText = travel.description ?? ""
+            
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
     func setLikeButton(_ cell: TravelInfoTableViewCell,_ travel: Travel, _ indexPath: IndexPath) {
         cell.likeButton.tag = indexPath.row
         cell.likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)

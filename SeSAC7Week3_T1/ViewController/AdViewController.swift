@@ -9,21 +9,25 @@ import UIKit
 
 class AdViewController: UIViewController {
 
+    static let identifier = "AdViewController"
+    
+    @IBOutlet var label: UILabel!
+    
+    var labelText = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        navigationItem.title = "광고 화면"
+        
+        setLabel()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func setLabel() {
+        label.text = labelText
+        label.font = .systemFont(ofSize: 20, weight: .bold)
+        label.numberOfLines = 5
+        
+        label.textAlignment = .center
     }
-    */
 
 }

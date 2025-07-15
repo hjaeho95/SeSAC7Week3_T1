@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class TravelInfoTableViewCell: UITableViewCell {
     
@@ -89,7 +90,9 @@ class TravelInfoTableViewCell: UITableViewCell {
         guard let imageString = rowData.travel_image else { return }
         let url = URL(string: imageString)
         
-        travelImageView.kf.setImage(with: url)
+        travelImageView.kf.setImage(with: url, options: [
+            .cacheOriginalImage,
+        ])
     }
     
     func configureLikeButton(_ rowData: Travel) {
