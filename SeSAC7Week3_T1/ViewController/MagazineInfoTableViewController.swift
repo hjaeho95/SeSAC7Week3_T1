@@ -30,8 +30,11 @@ class MagazineInfoTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Magazine"
         navigationItem.title = "SeSAC TRAVEL"
+        
+        tableView.register(UINib(nibName: MagazineInfoTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: MagazineInfoTableViewCell.identifier)
+        
+        tableView.rowHeight = UITableView.automaticDimension
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -39,36 +42,12 @@ class MagazineInfoTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MagazineInfoCell", for: indexPath) as! MagazineInfoTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: MagazineInfoTableViewCell.identifier, for: indexPath) as! MagazineInfoTableViewCell
         
         let magazine = magazines[indexPath.row]
         
-        if let url = URL(string: magazine.photo_image) {
-            cell.magazineImageView.kf.setImage(with: url)
-        }
-        
-        cell.magazineTitleLabel.text = magazine.title
-        
-        cell.magazineSubtitleLabel.text = magazine.subtitle
-        
-        let inputFormatter = DateFormatter()
-        inputFormatter.dateFormat = "yyMMdd"
-        inputFormatter.locale = Locale(identifier: "ko_KR")
-        
-        if let date = inputFormatter.date(from: magazine.date) {
-            let outputFormatter = DateFormatter()
-            outputFormatter.dateFormat = "yy년 MM월 dd일"
-            outputFormatter.locale = Locale(identifier: "ko_KR")
-            
-            cell.magazineDateLabel.text = outputFormatter.string(from: date)
-        }
+        cell.configureUI(rowData: magazine)
         
         return cell
     }
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        return 500
-    }
-
 }

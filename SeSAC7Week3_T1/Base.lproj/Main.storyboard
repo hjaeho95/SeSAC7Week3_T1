@@ -29,7 +29,7 @@
         <scene sceneID="CGe-cB-deL">
             <objects>
                 <viewControllerPlaceholder storyboardName="MagazineInfo" id="cwW-RO-szG" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" id="dQv-tm-TbB"/>
+                    <tabBarItem key="tabBarItem" title="item1" id="dQv-tm-TbB"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oS5-jh-U7B" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -39,7 +39,7 @@
         <scene sceneID="wej-ds-IPb">
             <objects>
                 <viewControllerPlaceholder storyboardName="Logic" id="8g6-ZX-x0F" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="1" title="" id="Y0F-CA-XSt"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="item2" id="Y0F-CA-XSt"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="98f-X0-4pd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -49,7 +49,7 @@
         <scene sceneID="8c0-tc-Owy">
             <objects>
                 <viewControllerPlaceholder storyboardName="TravelInfo" id="WRe-cs-0Jw" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="2" title="" id="Hoe-73-t32"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="item3" id="Hoe-73-t32"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cfk-Ru-KyM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

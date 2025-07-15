@@ -119,8 +119,11 @@ class TravelInfoTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Travel"
         navigationItem.title = "도시 상세 정보"
+        
+        tableView.register(UINib(nibName: TravelInfoTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: TravelInfoTableViewCell.identifier)
+        
+        tableView.register(UINib(nibName: TravelInfoAdTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: TravelInfoAdTableViewCell.identifier)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -128,73 +131,30 @@ class TravelInfoTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return setUI(tableView: tableView, indexPath: indexPath)
+        
+        let travel = travels[indexPath.row]
+        
+        if travel.ad ?? false {
+            let adCell = tableView.dequeueReusableCell(withIdentifier: TravelInfoAdTableViewCell.identifier, for: indexPath) as! TravelInfoAdTableViewCell
+            
+            adCell.configureUI(rowData: travel)
+            
+            return adCell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: TravelInfoTableViewCell.identifier, for: indexPath) as! TravelInfoTableViewCell
+            
+            cell.configureUI(rowData: travel)
+            
+            setLikeButton(cell, travel, indexPath)
+            
+            return cell
+        }
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let travel = travels[indexPath.row]
-
-        let rowHeight = tableView.rowHeight
         
-        return rowHeight
-    }
-    
-    func setUI(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "travelInfoCell", for: indexPath) as! TravelInfoTableViewCell
-        
-        let travel = travels[indexPath.row]
-        
-        setTitleLabel(cell, travel)
-        setDescriptionLabel(cell, travel)
-        setGradeLabel(cell, travel)
-        setSaveLabel(cell, travel)
-        setLikeButton(cell, travel, indexPath)
-        setTravelImageView(cell, travel)
-        
-        return cell
-    }
-    
-    func setTitleLabel(_ cell: TravelInfoTableViewCell,_ travel: Travel) {
-        cell.titleLabel.text = travel.title
-    }
-    
-    func setDescriptionLabel(_ cell: TravelInfoTableViewCell,_ travel: Travel) {
-        cell.descriptionLabel.text = travel.description
-    }
-    
-    func setGradeLabel(_ cell: TravelInfoTableViewCell,_ travel: Travel) {
-//        if let grade = travel.grade {
-//            let gradeText = switch grade {
-//            case 0..<1:
-//                "􀋂􀋂􀋂􀋂􀋂"
-//            case 1..<2:
-//                "􀋃􀋂􀋂􀋂􀋂"
-//            case 2..<3:
-//                "􀋃􀋃􀋂􀋂􀋂"
-//            case 3..<4:
-//                "􀋃􀋃􀋃􀋂􀋂"
-//            case 4..<5:
-//                "􀋃􀋃􀋃􀋃􀋂"
-//            default:
-//                "􀋃􀋃􀋃􀋃􀋃"
-//            }
-//            cell.gradeLabel.text = gradeText
-//        } else {
-//            cell.gradeLabel.text = "􀋂􀋂􀋂􀋂􀋂"
-//        }
-        if let grade = travel.grade {
-            for i in 1...Int(grade) {
-                cell.gradeImageViews[i - 1].tintColor = .orange
-            }
-        } 
-    }
-    
-    func setSaveLabel(_ cell: TravelInfoTableViewCell,_ travel: Travel) {
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .decimal
-        let saveText = numberFormatter.string(for: travel.save ?? 0)
-        
-        cell.saveLabel.text = " · 저장 \(saveText ?? "0")"
+        return travel.ad ?? false ? 120 : UITableView.automaticDimension
     }
     
     func setLikeButton(_ cell: TravelInfoTableViewCell,_ travel: Travel, _ indexPath: IndexPath) {
