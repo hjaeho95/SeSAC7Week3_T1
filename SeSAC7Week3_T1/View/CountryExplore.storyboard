@@ -1,25 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17150" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="572-yV-zSI">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17122"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="s0d-6b-0kx">
+        <!--Root View Controller-->
+        <scene sceneID="maR-JJ-gOQ">
             <objects>
-                <viewController id="Y6W-OH-hqX" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                <tableViewController storyboardIdentifier="CountryExploreTableViewController" id="Bnr-6t-qRW" customClass="CountryExploreTableViewController" customModule="SeSAC7Week3_T1" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="ZPm-K6-Wpe">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="XHX-uy-8Sh">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="134"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="tKY-Oa-hwz">
+                                    <rect key="frame" x="32" y="76" width="329" height="35"/>
+                                    <segments>
+                                        <segment title="First"/>
+                                        <segment title="Second"/>
+                                    </segments>
+                                </segmentedControl>
+                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s3d-yr-rkn">
+                                    <rect key="frame" x="32" y="16" width="329" height="44"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="44" id="wnu-EP-9ag"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <action selector="textFieldDidEndOnExit:" destination="Bnr-6t-qRW" eventType="editingDidEndOnExit" id="JFW-xF-Ty0"/>
+                                    </connections>
+                                </textField>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="s3d-yr-rkn" firstAttribute="leading" secondItem="XHX-uy-8Sh" secondAttribute="leading" constant="32" id="23Z-32-24E"/>
+                                <constraint firstItem="s3d-yr-rkn" firstAttribute="top" secondItem="XHX-uy-8Sh" secondAttribute="top" constant="16" id="5YC-Pu-aiF"/>
+                                <constraint firstAttribute="trailing" secondItem="tKY-Oa-hwz" secondAttribute="trailing" constant="32" id="6nS-dX-4Of"/>
+                                <constraint firstAttribute="trailing" secondItem="s3d-yr-rkn" secondAttribute="trailing" constant="32" id="GVH-qT-3f0"/>
+                                <constraint firstItem="tKY-Oa-hwz" firstAttribute="top" secondItem="s3d-yr-rkn" secondAttribute="bottom" constant="16" id="H8s-ub-wwB"/>
+                                <constraint firstAttribute="bottom" secondItem="tKY-Oa-hwz" secondAttribute="bottom" constant="24" id="StN-Qw-sK0"/>
+                                <constraint firstItem="tKY-Oa-hwz" firstAttribute="leading" secondItem="XHX-uy-8Sh" secondAttribute="leading" constant="32" id="dg6-qI-hjf"/>
+                            </constraints>
+                        </view>
+                        <connections>
+                            <outlet property="dataSource" destination="Bnr-6t-qRW" id="tUQ-fI-fSc"/>
+                            <outlet property="delegate" destination="Bnr-6t-qRW" id="drP-Hy-yIT"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="FVZ-kj-lpd"/>
+                    <connections>
+                        <outlet property="segmentedControl" destination="tKY-Oa-hwz" id="X3B-fU-ZVT"/>
+                        <outlet property="textField" destination="s3d-yr-rkn" id="0zX-Is-rKI"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="07P-wf-hPC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="383.96946564885496" y="43.661971830985919"/>
+        </scene>
+        <!--Country-->
+        <scene sceneID="Ooo-11-dJo">
+            <objects>
+                <navigationController id="572-yV-zSI" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Country" id="8mF-Ge-h2t"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dMo-WM-dMp">
+                        <rect key="frame" x="0.0" y="118" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Bnr-6t-qRW" kind="relationship" relationship="rootViewController" id="OTp-rL-9rf"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="osd-qH-hQQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-521" y="44"/>
         </scene>
     </scenes>
     <resources>
