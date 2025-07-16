@@ -19,7 +19,15 @@ class AdViewController: UIViewController {
         super.viewDidLoad()
         navigationItem.title = "광고 화면"
         
+        setLeftBarButtonItem()
+        
         setLabel()
+    }
+    
+    func setLeftBarButtonItem() {
+        let barButtonItem = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(backBarButtonItemTapped))
+        barButtonItem.tintColor = .black
+        navigationItem.leftBarButtonItem = barButtonItem
     }
     
     func setLabel() {
@@ -28,6 +36,10 @@ class AdViewController: UIViewController {
         label.numberOfLines = 5
         
         label.textAlignment = .center
+    }
+    
+    @objc func backBarButtonItemTapped() {
+        dismiss(animated: true)
     }
 
 }

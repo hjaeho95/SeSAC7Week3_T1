@@ -167,7 +167,12 @@ class TravelInfoTableViewController: UITableViewController {
             
             vc.labelText = travel.title ?? ""
             
-            navigationController?.pushViewController(vc, animated: true)
+            let nav = UINavigationController(rootViewController: vc)
+            
+            
+            
+            nav.modalPresentationStyle = .fullScreen
+            present(nav, animated: true)
         } else {
             let vc = sb.instantiateViewController(withIdentifier: TouristSpotViewController.identifier) as! TouristSpotViewController
             
@@ -212,4 +217,10 @@ class TravelInfoTableViewController: UITableViewController {
         
         tableView.reloadRows(at: [IndexPath(row: sender.tag, section: 0)], with: .fade)
     }
+    
+    @objc func backButtonTapped() {
+        print(#function)
+        dismiss(animated: true)
+    }
+    
 }

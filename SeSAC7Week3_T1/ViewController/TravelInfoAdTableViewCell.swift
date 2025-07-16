@@ -24,6 +24,12 @@ class TravelInfoAdTableViewCell: UITableViewCell {
         initUI()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        initUI()
+    }
+    
     func configureUI(rowData: Travel) {
         configureMainLabel(rowData)
         
