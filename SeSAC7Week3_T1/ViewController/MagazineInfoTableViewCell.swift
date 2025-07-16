@@ -56,10 +56,7 @@ class MagazineInfoTableViewCell: UITableViewCell {
     
     func configureMagazineImageView(_ rowData: Magazine) {
         if let url = URL(string: rowData.photo_image) {
-            magazineImageView.kf.setImage(with: url, options: [
-                .processor(DownsamplingImageProcessor(size: magazineImageView.bounds.size)),
-                .diskCacheExpiration(.days(7))
-            ])
+            magazineImageView.kf.setImage(with: url)
         }
     }
     
