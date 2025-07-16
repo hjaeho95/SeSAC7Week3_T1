@@ -1,17 +1,17 @@
 //
-//  CountryExploreTableViewController.swift
+//  CountryExploreViewController.swift
 //  SeSAC7Week3_T1
 //
-//  Created by ez on 7/15/25.
+//  Created by ez on 7/16/25.
 //
 
 import UIKit
 
-class CountryExploreTableViewController: UITableViewController {
-    
-    @IBOutlet var segmentedControl: UISegmentedControl!
+class CountryExploreViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var textField: UITextField!
+    @IBOutlet var segmentedControl: UISegmentedControl!
+    @IBOutlet var tableView: UITableView!
     
     let cities: [City] = [
         City(city_name: "방콕", city_english_name: "Bangkok", city_explain: "방콕, 파타야, 후아힌, 코사멧, 코사무이", city_image: "https://images.unsplash.com/photo-1716872491897-078d9b89be49?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", domestic_travel: false),
@@ -36,7 +36,7 @@ class CountryExploreTableViewController: UITableViewController {
     var overseas: [City] = []
     
     var highlighting = ""
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "인기 도시"
@@ -45,30 +45,28 @@ class CountryExploreTableViewController: UITableViewController {
         
         tableView.rowHeight = UITableView.automaticDimension
         
-        setSegmentedControl()
+        configure()
         
         filteredCities = cities
         domestic = cities.filter { $0.domestic_travel == true }
         overseas = cities.filter { $0.domestic_travel == false }
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredCities.count
+    func configure() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        configureTextField()
+        configureSegmentedControl()
+        
+        tableView.rowHeight = UITableView.automaticDimension
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CountryExploreTableViewCell.identifier, for: indexPath) as! CountryExploreTableViewCell
-        
-        let city = filteredCities[indexPath.row]
-        
-        cell.configureCountryImageView(rowData: city)
-        cell.configureMainLabel(rowData: city, highlighting)
-        cell.configureSubtitleLabel(rowData: city, highlighting)
-        
-        return cell
+    func configureTextField() {
+        textField.addTarget(self, action: #selector(textFieldDidEndOnExit), for: .editingDidEndOnExit)
     }
     
-    func setSegmentedControl() {
+    func configureSegmentedControl() {
         segmentedControl.removeAllSegments()
         
         segmentedControl.insertSegment(withTitle: "모두", at: 0, animated: true)
@@ -78,6 +76,22 @@ class CountryExploreTableViewController: UITableViewController {
         segmentedControl.selectedSegmentIndex = 0
         
         segmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged), for: .valueChanged)
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return filteredCities.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: CountryExploreTableViewCell.identifier, for: indexPath) as! CountryExploreTableViewCell
+        
+        let city = filteredCities[indexPath.row]
+        
+        cell.configureCountryImageView(rowData: city)
+        cell.configureMainLabel(rowData: city, highlighting)
+        cell.configureSubtitleLabel(rowData: city, highlighting)
+        
+        return cell
     }
     
     @objc func segmentedControlValueChanged(sender: UISegmentedControl) {
@@ -96,9 +110,9 @@ class CountryExploreTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
-    @IBAction func textFieldDidEndOnExit(_ sender: UITextField) {
+    @objc func textFieldDidEndOnExit(sender: UITextField) {
         
-        highlighting = ""
+        segmentedControlValueChanged(sender: segmentedControl)
         
         // whitespace 제거
         guard let text = sender.text?.trimmingCharacters(in: .whitespaces) else { return }
@@ -117,4 +131,5 @@ class CountryExploreTableViewController: UITableViewController {
         
         tableView.reloadData()
     }
+
 }
