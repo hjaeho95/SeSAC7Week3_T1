@@ -124,6 +124,8 @@ class TravelInfoTableViewController: UITableViewController {
         tableView.register(UINib(nibName: TravelInfoTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: TravelInfoTableViewCell.identifier)
         
         tableView.register(UINib(nibName: TravelInfoAdTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: TravelInfoAdTableViewCell.identifier)
+        
+        tableView.rowHeight = UITableView.automaticDimension
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -151,12 +153,6 @@ class TravelInfoTableViewController: UITableViewController {
         }
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let travel = travels[indexPath.row]
-        
-        return travel.ad ?? false ? 120 : UITableView.automaticDimension
-    }
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let travel = travels[indexPath.row]
         
@@ -168,8 +164,6 @@ class TravelInfoTableViewController: UITableViewController {
             vc.labelText = travel.title ?? ""
             
             let nav = UINavigationController(rootViewController: vc)
-            
-            
             
             nav.modalPresentationStyle = .fullScreen
             present(nav, animated: true)
