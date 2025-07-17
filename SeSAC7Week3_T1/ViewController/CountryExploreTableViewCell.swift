@@ -79,6 +79,7 @@ class CountryExploreTableViewCell: UITableViewCell {
     func initInnerUIView() {
         innerUIView.backgroundColor = UIColor(hexCode: "000000", alpha: 0.5)
         
+        innerUIView.clipsToBounds = true
         innerUIView.layer.cornerRadius = 20
         innerUIView.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMaxXMaxYCorner)
     }
