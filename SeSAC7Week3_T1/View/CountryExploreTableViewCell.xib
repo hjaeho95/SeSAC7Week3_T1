@@ -63,8 +63,8 @@
             <connections>
                 <outlet property="countryImageView" destination="x2f-Bp-E0A" id="sDM-Br-YvL"/>
                 <outlet property="innerUIView" destination="0XG-PN-F2I" id="FeQ-n7-D6n"/>
-                <outlet property="mainLabel" destination="CRx-iJ-RUb" id="yYm-oH-b1z"/>
                 <outlet property="subtitleLabel" destination="XGv-eC-1Bx" id="lxy-jD-5Ev"/>
+                <outlet property="titleLabel" destination="CRx-iJ-RUb" id="yYm-oH-b1z"/>
             </connections>
             <point key="canvasLocation" x="320.61068702290078" y="-42.95774647887324"/>
         </tableViewCell>

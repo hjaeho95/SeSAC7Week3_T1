@@ -7,11 +7,14 @@
 
 import UIKit
 
-class CountryExploreViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CountryExploreViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+
+    
+    
     
     @IBOutlet var textField: UITextField!
     @IBOutlet var segmentedControl: UISegmentedControl!
-    @IBOutlet var tableView: UITableView!
+    @IBOutlet var collectionView: UICollectionView!
     
     let cities: [City] = [
         City(city_name: "방콕", city_english_name: "Bangkok", city_explain: "방콕, 파타야, 후아힌, 코사멧, 코사무이", city_image: "https://images.unsplash.com/photo-1716872491897-078d9b89be49?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", domestic_travel: false),
@@ -41,10 +44,6 @@ class CountryExploreViewController: UIViewController, UITableViewDelegate, UITab
         super.viewDidLoad()
         navigationItem.title = "인기 도시"
         
-        tableView.register(UINib(nibName: CountryExploreTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: CountryExploreTableViewCell.identifier)
-        
-        tableView.rowHeight = UITableView.automaticDimension
-        
         configure()
         
         filteredCities = cities
@@ -52,14 +51,47 @@ class CountryExploreViewController: UIViewController, UITableViewDelegate, UITab
         overseas = cities.filter { $0.domestic_travel == false }
     }
     
+    func collectionViewLayout(_ layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout(), rowCount: CGFloat, columnCount: CGFloat, padding: CGFloat = 16, spacing: CGFloat = 16, direction: UICollectionView.ScrollDirection = .vertical) -> UICollectionViewFlowLayout {
+        let itemRowCount = rowCount
+        let itemColumnCount = columnCount
+        
+        let edgePadding = padding
+        let itemSpacing = spacing
+        
+        let deviceWidth = UIScreen.main.bounds.width
+        let deviceHeight = UIScreen.main.bounds.height
+        
+        let itemWidth = deviceWidth - (edgePadding * 2) - (itemSpacing * (itemRowCount - 1))
+        let itemHeight = deviceHeight - (edgePadding * 2) - (itemSpacing * (itemColumnCount - 1))
+        
+        layout.itemSize = CGSize(width: itemWidth / itemRowCount, height: itemWidth / itemRowCount + 70)
+        layout.sectionInset = .init(top: edgePadding, left: edgePadding, bottom: edgePadding, right: edgePadding)
+        layout.minimumLineSpacing = itemSpacing
+        layout.minimumInteritemSpacing = itemSpacing
+        layout.scrollDirection = direction
+        
+        return layout
+    }
+    
     func configure() {
-        tableView.delegate = self
-        tableView.dataSource = self
+        collectionView.delegate = self
+        collectionView.dataSource = self
+//        tableView.delegate = self
+//        tableView.dataSource = self
+        
+        collectionView.register(UINib(nibName: CountryExploreCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: CountryExploreCollectionViewCell.identifier)
+        
+//        tableView.register(UINib(nibName: CountryExploreTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: CountryExploreTableViewCell.identifier)
+//        
+//        tableView.rowHeight = UITableView.automaticDimension
         
         configureTextField()
         configureSegmentedControl()
         
-        tableView.rowHeight = UITableView.automaticDimension
+        let layout = UICollectionViewFlowLayout()
+        
+        collectionView.collectionViewLayout = collectionViewLayout(layout, rowCount: 2, columnCount: 3, padding: 32, spacing: 16)
+//        tableView.rowHeight = UITableView.automaticDimension
     }
     
     func configureTextField() {
@@ -78,12 +110,28 @@ class CountryExploreViewController: UIViewController, UITableViewDelegate, UITab
         segmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged), for: .valueChanged)
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return filteredCities.count
+//    }
+//    
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: CountryExploreTableViewCell.identifier, for: indexPath) as! CountryExploreTableViewCell
+//        
+//        let city = filteredCities[indexPath.row]
+//        
+//        cell.configureCountryImageView(rowData: city)
+//        cell.configureMainLabel(rowData: city, highlighting)
+//        cell.configureSubtitleLabel(rowData: city, highlighting)
+//        
+//        return cell
+//    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return filteredCities.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CountryExploreTableViewCell.identifier, for: indexPath) as! CountryExploreTableViewCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CountryExploreCollectionViewCell.identifier, for: indexPath) as! CountryExploreCollectionViewCell
         
         let city = filteredCities[indexPath.row]
         
@@ -107,7 +155,8 @@ class CountryExploreViewController: UIViewController, UITableViewDelegate, UITab
             filteredCities = cities
         }
         
-        tableView.reloadData()
+        collectionView.reloadData()
+//        tableView.reloadData()
     }
     
     @objc func textFieldDidEndOnExit(sender: UITextField) {
@@ -129,7 +178,8 @@ class CountryExploreViewController: UIViewController, UITableViewDelegate, UITab
         // 특정 문자 하이라이트
         highlighting = text
         
-        tableView.reloadData()
+        collectionView.reloadData()
+//        tableView.reloadData()
     }
 
 }

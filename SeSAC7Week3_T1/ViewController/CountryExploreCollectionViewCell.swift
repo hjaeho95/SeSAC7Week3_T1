@@ -1,23 +1,21 @@
 //
-//  CountryExploreTableViewCell.swift
+//  CountryExploreCollectionViewCell.swift
 //  SeSAC7Week3_T1
 //
-//  Created by ez on 7/15/25.
+//  Created by ez on 7/17/25.
 //
 
 import UIKit
 
-class CountryExploreTableViewCell: UITableViewCell {
+class CountryExploreCollectionViewCell: UICollectionViewCell {
 
-    static let identifier = "CountryExploreTableViewCell"
+    static let identifier = "CountryExploreCollectionViewCell"
     
     @IBOutlet var countryImageView: UIImageView!
     
     @IBOutlet var titleLabel: UILabel!
     
     @IBOutlet var subtitleLabel: UILabel!
-    
-    @IBOutlet var innerUIView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -50,37 +48,28 @@ class CountryExploreTableViewCell: UITableViewCell {
         initCountryImageView()
         initMainLabel()
         initSubtitleLabel()
-        initInnerUIView()
     }
-    
     
     func initCountryImageView() {
         countryImageView.contentMode = .scaleAspectFill
         
         countryImageView.clipsToBounds = true
-        countryImageView.layer.cornerRadius = 20
-        countryImageView.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMinXMinYCorner, .layerMaxXMaxYCorner)
+        countryImageView.layer.cornerRadius = countryImageView.frame.height / 2 - 32
     }
     
     func initMainLabel() {
-        titleLabel.font = .systemFont(ofSize: 16, weight: .bold)
-        titleLabel.textColor = .white
+        titleLabel.font = .systemFont(ofSize: 14, weight: .heavy)
+        titleLabel.textColor = .black
+        titleLabel.textAlignment = .center
         
         titleLabel.numberOfLines = 1
     }
     
     func initSubtitleLabel() {
-        subtitleLabel.font = .systemFont(ofSize: 10)
-        subtitleLabel.textColor = .white
+        subtitleLabel.font = .systemFont(ofSize: 12)
+        subtitleLabel.textColor = .gray
+        subtitleLabel.textAlignment = .center
         
-        subtitleLabel.numberOfLines = 1
-    }
-    
-    func initInnerUIView() {
-        innerUIView.backgroundColor = UIColor(hexCode: "000000", alpha: 0.5)
-        
-        innerUIView.clipsToBounds = true
-        innerUIView.layer.cornerRadius = 20
-        innerUIView.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMaxXMaxYCorner)
+        subtitleLabel.numberOfLines = 2
     }
 }
