@@ -9,6 +9,8 @@ import UIKit
 
 class TravelInfoAdTableViewCell: UITableViewCell {
     
+    
+    
     static let identifier = "TravelInfoAdTableViewCell"
     
     
@@ -27,7 +29,7 @@ class TravelInfoAdTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        initUI()
+        mainLabel.text = ""
     }
     
     func configureUI(rowData: Travel) {

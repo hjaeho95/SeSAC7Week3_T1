@@ -136,7 +136,7 @@ class TravelInfoTableViewController: UITableViewController {
         
         let travel = travels[indexPath.row]
         
-        if travel.ad ?? false {
+        if travel.ad {
             let adCell = tableView.dequeueReusableCell(withIdentifier: TravelInfoAdTableViewCell.identifier, for: indexPath) as! TravelInfoAdTableViewCell
             
             adCell.configureUI(rowData: travel)
@@ -158,7 +158,7 @@ class TravelInfoTableViewController: UITableViewController {
         
         let sb = UIStoryboard(name: "TravelInfo", bundle: nil)
         
-        if travel.ad ?? false {
+        if travel.ad {
             let vc = sb.instantiateViewController(withIdentifier: AdViewController.identifier) as! AdViewController
             
             vc.labelText = travel.title ?? ""
